@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 export interface CountryState {
-    countries : any[]
+    countries : any[],
+    searchTerm : string
 }
 
 const initialState: CountryState = {
     countries: [],
+    searchTerm: ""
 };
 
 const countrySlice = createSlice({
@@ -15,6 +17,9 @@ const countrySlice = createSlice({
     reducers:{
         replaceCountries(state, action){
             state.countries = action.payload.countries;
+        },
+        setSearchTerm(state, action){
+            state.searchTerm = action.payload;
         }
     }
 });

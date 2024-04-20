@@ -19,7 +19,7 @@ export const fetchCountriesData : any = () => {
 
         const countriesData = await fetchCountries();
 
-        // console.log(countriesData);
+        // console.log("data is here");
 
         dispatch(countryActions.replaceCountries({
             countries: countriesData || [],
