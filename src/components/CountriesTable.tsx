@@ -3,7 +3,7 @@ import CountriesTableRow from "./CountriesTableRow";
 import Pagination from "./Pagination";
 import { useSelector } from "react-redux";
 import { CountryState } from "../store/country-slice";
-
+//193 --- 113
 const CountriesTable = () => {
     const countries = useSelector((state: {countries:CountryState}) => state.countries.countries);
     const searchTerm = useSelector((state: {countries:CountryState}) => state.countries.searchTerm);
@@ -15,112 +15,62 @@ const CountriesTable = () => {
 
     useEffect(() => {
 
-        // if(!searchTerm && searchTerms.length === 0 && statusTerms.independent === false && statusTerms.unMember === false){
-        //     setTableContent(countries);
-        // }
-
-        if(searchTerm && searchTerms.length > 0){
-            const filteredData = countries.filter(country => {
-                const lowerCaseCommonName = country.name.common.toLowerCase();
-                const lowerCaseRegion = country.region.toLowerCase();
-                return searchTerms.some(term =>
-                    lowerCaseRegion.includes(term.toLowerCase()) &&
-                    lowerCaseCommonName.includes(searchTerm)
-                );
-            });
-
-            if(statusTerms.independent === false && statusTerms.unMember === false){
-                console.log("Entered 3rd condition");
-                setTableContent(filteredData);
-            }
-
-            else{
-                console.log("Entered 2nd condition");
-                if(statusTerms.independent === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.independent === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-
-                if(statusTerms.unMember === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.unMember === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-            }
-        }
-
-        else if (searchTerm) {
-            const filteredData = countries.filter(
-                country =>{
-                    return (
-                    country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    country.region.toLowerCase().includes(searchTerm.toLowerCase()));
-                }
-            );
-            if(statusTerms.independent === false && statusTerms.unMember === false){
-                console.log("Entered 3rd condition");
-                setTableContent(filteredData);
-            }
-
-            else{
-                console.log("Entered 2nd condition");
-                if(statusTerms.independent === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.independent === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-
-                if(statusTerms.unMember === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.unMember === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-            }
-        } 
-        else if (searchTerms.length > 0) {
-            console.log("Entered first condition");
-            const filteredData = countries.filter(country => {
-                const lowerCaseRegion = country.region.toLowerCase();
-                return searchTerms.some(term =>
-                    lowerCaseRegion.includes(term.toLowerCase())
-                );
-            });
-
-            if(statusTerms.independent === false && statusTerms.unMember === false){
-                console.log("Entered 3rd condition");
-                setTableContent(filteredData);
-            }
-
-            else{
-                console.log("Entered 2nd condition");
-                if(statusTerms.independent === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.independent === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-
-                if(statusTerms.unMember === true){
-                    const newFilteredData = filteredData.filter((country)=>{
-                        return (country.unMember === true)
-                    });
-
-                    setTableContent(newFilteredData);
-                }
-            }
-        }
-        else {
+        if(!searchTerm && searchTerms.length === 0 && statusTerms.independent === false && statusTerms.unMember === false){
             setTableContent(countries);
+        }
+
+        else{
+            let filteredData:any[] = [];
+            if(searchTerm && searchTerms.length > 0){
+                filteredData = countries.filter(country => {
+                    const lowerCaseCommonName = country.name.common.toLowerCase();
+                    const lowerCaseRegion = country.region.toLowerCase();
+                    return searchTerms.some(term =>
+                        lowerCaseRegion.includes(term.toLowerCase()) &&
+                        lowerCaseCommonName.includes(searchTerm)
+                    );
+                });
+            }
+    
+            else if (searchTerm) {
+                filteredData = countries.filter(country => {
+                    return (
+                        country.name.common.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        country.region.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                });
+            } 
+
+            else if (searchTerms.length > 0) {
+                filteredData = countries.filter(country => {
+                    const lowerCaseRegion = country.region.toLowerCase();
+                    return searchTerms.some(term =>
+                        lowerCaseRegion.includes(term.toLowerCase())
+                    );
+                });
+            }
+
+            if(statusTerms.independent === false && statusTerms.unMember === false){
+                setTableContent(filteredData);
+            }
+
+            else{
+                if(statusTerms.independent === true){
+                    const newFilteredData = filteredData.filter((country)=>{
+                        return (country.independent === true)
+                    });
+
+                    setTableContent(newFilteredData);
+                }
+
+                if(statusTerms.unMember === true){
+                    const newFilteredData = filteredData.filter((country)=>{
+                        return (country.unMember === true)
+                    });
+
+                    setTableContent(newFilteredData);
+                }
+            }
         }
     }, [searchTerm, searchTerms, countries, statusTerms.independent, statusTerms.unMember]);
 
