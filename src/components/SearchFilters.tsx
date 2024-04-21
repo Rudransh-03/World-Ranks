@@ -1,4 +1,3 @@
-import React from 'react'
 import SortFilter from './Filter/SortFilter'
 import RegionFilter from './Filter/RegionFilter'
 import StatusFilter from './Filter/StatusFilter'

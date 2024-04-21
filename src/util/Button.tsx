@@ -1,8 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux";
+import { countryActions } from "../store/country-slice";
 
 const Button = ({children} : any) => {
-
+    const dispatch = useDispatch();
     const[clicked, setClicked] =useState(false);
+
+
+    useEffect(()=>{
+        if(clicked){
+            dispatch(countryActions.addToSearchTerms(children));
+        }
+        else{
+            dispatch(countryActions.removeFromSearchTerms(children));
+        }
+    }, [clicked])
 
     function handleClick(){
         setClicked(!clicked);

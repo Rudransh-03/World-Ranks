@@ -2,7 +2,7 @@ import Button from '../../util/Button'
 
 const RegionFilter = () => {
   return (
-    <>
+    <div className='px-4'>
     <div>Region:</div>
     <div className='mb-12 flex flex-wrap'>
         <Button>Asia</Button>
@@ -12,7 +12,7 @@ const RegionFilter = () => {
         <Button>Africa</Button>
         <Button>Oceania</Button>
     </div>
-    </>
+    </div>
   )
 }
 

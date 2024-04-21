@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { countryActions } from "./country-slice";
 
 export const fetchCountriesData : any = () => {
-    console.log("in fetchCountriesData function");
+    // console.log("in fetchCountriesData function");
 
     return async(dispatch : Dispatch) => {
         const fetchCountries = async() => {
