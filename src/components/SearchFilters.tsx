@@ -1,8 +1,9 @@
 import SortFilter from './Filter/SortFilter'
 import RegionFilter from './Filter/RegionFilter'
 import StatusFilter from './Filter/StatusFilter'
+import { ReactNode } from 'react'
 
-const SearchFilters = () => {
+function SearchFilters() : ReactNode {
   return (
     <>
     <SortFilter />

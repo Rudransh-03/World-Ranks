@@ -5,10 +5,10 @@ import CountryHeading from './CountryHeading';
 import CountryNeighbours from './CountryNeighbours';
 import { useParams } from 'react-router-dom';
 
-const CountryDetails = () => {
+const CountryDetails: React.FC = () => {
     const { name } = useParams<{ name: string }>();
-    const countries = useSelector((state: {countries:CountryState}) => state.countries.countries);
-    const country = countries.find(country => country.name.common.toLowerCase() === name);
+    const countries : any[] = useSelector((state: {countries:CountryState}) => state.countries.countries);
+    const country : any = countries.find((country: any) => country.name.common.toLowerCase() === name);
 
     return (
     <div className='bg-bgBlack text-white flex justify-center'>

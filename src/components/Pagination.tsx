@@ -1,9 +1,9 @@
 import { PaginationComponent } from "../util/Interfaces"
 
 
-const Pagination = ({nPages, currentPage, setCurrentPage} : PaginationComponent) => {
+const Pagination:React.FC<PaginationComponent>  = ({nPages, currentPage, setCurrentPage}) => {
 
-    const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
+    const pageNumbers: number[] = [...Array(nPages + 1).keys()].slice(1)
 
     function goToNextPage() : void {
         if(currentPage !== nPages) setCurrentPage(currentPage + 1)

@@ -1,4 +1,7 @@
-const CountryHeading = ({country} : any) => {
+import { CountryInterface } from "../../util/Interfaces"
+
+
+const CountryHeading: React.FC<CountryInterface> = ({country}) => {
   return (
     <>
     <div className='flex justify-center '>

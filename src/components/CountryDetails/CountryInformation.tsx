@@ -1,6 +1,7 @@
+import { CountryInterface } from "../../util/Interfaces";
 import { CountryInfoCard } from "./CountryInfoCard";
 
-const CountryInformation = ({country} : any) => {
+const CountryInformation:React.FC<CountryInterface> = ({country}) => {
 
     let languages : string  = "";
     let currencies : string  = "";

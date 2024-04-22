@@ -1,13 +1,11 @@
-
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Country } from "../../util/Interfaces";
 
+const CountriesTableRow: React.FC<Country> = ({flag, name, population, area, region}) => {
 
-const CountriesTableRow = ({flag, name, population, area, region}:Country) => {
+  const navigate : NavigateFunction = useNavigate();
 
-  const navigate = useNavigate();
-
-  function handleClick(){
+  function handleClick() : void {
     navigate(`/country/${name.toLowerCase()}`);
   }
 

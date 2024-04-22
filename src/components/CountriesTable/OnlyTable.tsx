@@ -1,7 +1,9 @@
+import { OnlyTableProps } from '../../util/Interfaces'
 import CountriesTableHeader from './CountiresTableHeader'
 import CountriesTableRow from './CountriesTableRow'
 
-const OnlyTable = ({currentRecords} : any) => {
+
+const OnlyTable: React.FC<OnlyTableProps> = ({currentRecords}) => {
   return (
     <table className="w-full bg-tableCard rounded-md text-center">
         <thead>

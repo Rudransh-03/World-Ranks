@@ -1,9 +1,9 @@
 import React, { useState, ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import { countryActions } from '../../store/country-slice';
+import { useAppDispatch } from '../../hooks';
 
 const SortFilter: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [selectedValue, setSelectedValue] = useState<string>('');
 

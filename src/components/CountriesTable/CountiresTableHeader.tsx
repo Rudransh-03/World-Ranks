@@ -1,6 +1,4 @@
-
-
-const CountriesTableHeader = () => {
+const CountriesTableHeader : React.FC = () => {
   return (
     <>
         <tr className="border-b border-gray-700">

@@ -2,14 +2,14 @@ import Header from "./components/Header"
 import Home from "./components/Home"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from "./components/NoPage";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchCountriesData } from "./store/country-actions";
 import CountryDetails from "./components/CountryDetails/CountryDetails";
+import { useAppDispatch } from "./hooks";
 
 function App() {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(()=>{
     dispatch(fetchCountriesData());

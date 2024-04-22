@@ -1,6 +1,6 @@
 import Button from '../../util/Button'
 
-const RegionFilter = () => {
+const RegionFilter: React.FC = () => {
   return (
     <div className='px-4'>
     <div>Region:</div>

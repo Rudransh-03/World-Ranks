@@ -6,19 +6,20 @@ import { NotifState } from '../../store/ui-slice';
 import OnlyTable from './OnlyTable';
 import Loader from '../Loader';
 import useFilteredCountries from '../../util/useFilterCountries';
+import { FilteredCountriesResult } from '../../util/Interfaces';
 
-const CountriesTable = () => {
-    const loadingText = useSelector((state: { ui:NotifState })=>state.ui.loadingText);
-    const searchTerm = useSelector((state: {countries:CountryState}) => state.countries.searchTerm);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(20);
+const CountriesTable : React.FC  = () => {
+    const loadingText : string = useSelector((state: { ui:NotifState })=>state.ui.loadingText);
+    const searchTerm : string = useSelector((state: {countries:CountryState}) => state.countries.searchTerm);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [recordsPerPage] = useState<number>(20);
 
-    const { tableContent } = useFilteredCountries();
+    const { tableContent } : FilteredCountriesResult = useFilteredCountries();
 
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-    const currentRecords = tableContent.slice(indexOfFirstRecord, indexOfLastRecord);
-    const nPages = Math.ceil(tableContent.length / recordsPerPage);
+    const indexOfLastRecord : number = currentPage * recordsPerPage;
+    const indexOfFirstRecord : number = indexOfLastRecord - recordsPerPage;
+    const currentRecords : any[] = tableContent.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages : number = Math.ceil(tableContent.length / recordsPerPage);
 
     return (
         <>

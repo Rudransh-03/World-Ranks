@@ -1,4 +1,4 @@
-const Loader = () => {
+const Loader:React.FC = () => {
   return (
     <div className='h-96 flex items-center justify-center text-white'>
         <div className="flex flex-col items-center  -ml-12">

@@ -1,6 +1,6 @@
 import { CountryInfoCardProps } from "../../util/Interfaces"
 
-export const CountryInfoCard = ({title, value} : CountryInfoCardProps) => {
+export const CountryInfoCard: React.FC<CountryInfoCardProps> = ({title, value}) => {
   return (
     <div className='px-8 py-4 border-t border-gray-700'>
             <div className='flex justify-between'>

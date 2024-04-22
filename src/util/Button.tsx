@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux";
+import { ReactNode, useEffect, useState } from "react"
 import { countryActions } from "../store/country-slice";
-
-const Button = ({children} : any) => {
-    const dispatch = useDispatch();
-    const[clicked, setClicked] =useState(false);
+import { useAppDispatch } from "../hooks";
+import { ButtonProps } from "./Interfaces";
+  
+  function Button ({ children } : ButtonProps) : ReactNode {
+    const dispatch = useAppDispatch();
+    const[clicked, setClicked] =useState<boolean>(false);
 
 
     useEffect(()=>{
         if(clicked){
-            dispatch(countryActions.addToSearchTerms(children));
+            dispatch(countryActions.addToSearchTerms(children as string));
         }
         else{
-            dispatch(countryActions.removeFromSearchTerms(children));
+            dispatch(countryActions.removeFromSearchTerms(children as string));
         }
     }, [clicked])
 

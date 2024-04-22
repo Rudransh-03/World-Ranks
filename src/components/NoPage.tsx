@@ -1,4 +1,4 @@
-const NoPage = () => {
+const NoPage:React.FC = () => {
     return <h1>404</h1>;
   };
   

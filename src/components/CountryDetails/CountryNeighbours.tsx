@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { CountryNeighboursProps, NeighbourCountries } from "../../util/Interfaces";
 
 
-const CountryNeighbours = ({country, countries} : CountryNeighboursProps) => {
-    let navigate = useNavigate();
+const CountryNeighbours:React.FC<CountryNeighboursProps> = ({country, countries}) => {
+    let navigate : NavigateFunction = useNavigate();
     let neighbours : NeighbourCountries[] = [];
 
     if(country!=undefined){

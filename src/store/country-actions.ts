@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Dispatch } from "redux";
 import { countryActions } from "./country-slice";
 import { uiActions } from "./ui-slice";

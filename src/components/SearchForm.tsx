@@ -1,18 +1,19 @@
 import { FormEvent, useRef } from "react";
-import { useDispatch } from "react-redux";
 import { countryActions } from "../store/country-slice";
+import { useAppDispatch } from "../hooks";
 
 
-const SearchForm = () => {
-    const dispatch = useDispatch();
+const SearchForm:React.FC = () => {
+    const dispatch = useAppDispatch();
 
-    const searchFilterRef = useRef<HTMLInputElement | null>(null);
+    const searchFilterRef: React.MutableRefObject<HTMLInputElement | null> = useRef<HTMLInputElement | null>(null);
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) : void => {
         event.preventDefault();
-        const searchTerm:string | undefined = searchFilterRef.current?.value;
-        dispatch(countryActions.setSearchTerm(searchTerm));
-        // navigate(`/search/${searchTerm?.toLowerCase()}`);
+        if(searchFilterRef.current !=null){
+            const searchTerm:string = searchFilterRef.current.value;
+            dispatch(countryActions.setSearchTerm(searchTerm));
+        }
     };
 
 

@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { StatusTerms } from "../util/Interfaces";
 
 
 export interface CountryState {
     countries : any[],
     searchTerm : string,
     searchTerms : string[],
-    statusTerms : {
-        unMember : boolean,
-        independent : boolean
-    }
+    sortTerm: string,
+    statusTerms : StatusTerms
 }
 
 const initialState: CountryState = {
     countries: [],
     searchTerm: "",
     searchTerms : [],
+    sortTerm: "",
     statusTerms: {
         unMember: false,
         independent: false
@@ -29,19 +29,19 @@ const countrySlice = createSlice({
             state.countries = action.payload.countries;
         },
         
-        setSearchTerm(state, action){
+        setSearchTerm(state, action:PayloadAction<string>) {
             state.searchTerm = action.payload;
         },
 
-        addToSearchTerms(state, action){
+        addToSearchTerms(state, action:PayloadAction<string>){
             state.searchTerms.push(action.payload);
         },
 
-        removeFromSearchTerms(state, action){
+        removeFromSearchTerms(state, action:PayloadAction<string>){
             state.searchTerms = state.searchTerms.filter((term) => term !== action.payload)
         },
 
-        toggleStatusTerms(state, action){
+        toggleStatusTerms(state, action:PayloadAction<string>){
             const key = action.payload; 
             if(key === "unMember"){
                 state.statusTerms.unMember = !state.statusTerms.unMember;
@@ -51,17 +51,10 @@ const countrySlice = createSlice({
                 state.statusTerms.unMember = state.statusTerms.unMember;
                 state.statusTerms.independent = !state.statusTerms.independent;
             }
-
-            // console.log(state.statusTerms.independent);
         },
         
-        sortCountries(state, action) {
-              const sortedCountries = [...state.countries].sort((a, b) => {
-                if (action.payload === "name") return a.name.common.localeCompare(b.name.common);
-                if (action.payload === "population") return b.population - a.population;
-                if (action.payload === "area") return b.area - a.area;
-              });
-              state.countries = sortedCountries;
+        sortCountries(state, action:PayloadAction<string>) {
+            state.sortTerm = action.payload
           }
     }
 });

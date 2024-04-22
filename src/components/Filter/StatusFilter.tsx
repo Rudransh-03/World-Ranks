@@ -1,21 +1,21 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux';
 import { countryActions } from '../../store/country-slice';
+import { useAppDispatch } from '../../hooks';
 
-const StatusFilter = () => {
+const StatusFilter: React.FC  = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     
     const [isUNChecked, setIsUNChecked] = useState<boolean>(false);
     const [isIndependentChecked, setIsIndependentChecked] = useState<boolean>(false);
 
 
-    const handleUNCheckboxChange = () => {
+    function handleUNCheckboxChange () : void {
         setIsUNChecked(!isUNChecked);
         dispatch(countryActions.toggleStatusTerms("unMember"));
     };
 
-    const handleIndependentCheckboxChange = () => {
+    function handleIndependentCheckboxChange(): void {
         setIsIndependentChecked(!isIndependentChecked);
         dispatch(countryActions.toggleStatusTerms("independent"));
     };
