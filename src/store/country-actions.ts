@@ -1,11 +1,15 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { countryActions } from "./country-slice";
+import { uiActions } from "./ui-slice";
 
 export const fetchCountriesData : any = () => {
-    // console.log("in fetchCountriesData function");
 
     return async(dispatch : Dispatch) => {
+
+        dispatch(uiActions.showLoadingText('Fetching Blogs'));
+        // await new Promise((resolve)=> setTimeout(resolve, 5000));
+
         const fetchCountries = async() => {
             const response = await fetch('https://restcountries.com/v3.1/all');
 
@@ -19,11 +23,11 @@ export const fetchCountriesData : any = () => {
 
         const countriesData = await fetchCountries();
 
-        // console.log("data is here");
-
         dispatch(countryActions.replaceCountries({
             countries: countriesData || [],
         }))
+
+        dispatch(uiActions.showLoadingText(''));
     }
 
 }

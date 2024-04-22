@@ -18,3 +18,18 @@ export interface CountriesTableProps{
     currentPage: number,
     setCurrentPage: any
 }
+
+export interface NeighbourCountries {
+    name: string,
+    flag: string
+}
+
+export interface CountryNeighboursProps{
+    country: any;
+    countries: any[];
+}
+
+export interface CountryInfoCardProps{
+    title: string,
+    value: string
+}

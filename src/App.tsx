@@ -5,6 +5,7 @@ import NoPage from "./components/NoPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchCountriesData } from "./store/country-actions";
+import CountryDetails from "./components/CountryDetails/CountryDetails";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NoPage />} />
+        <Route path="country/:name" element={<CountryDetails />} />
       </Routes>
     </BrowserRouter>
   )
